@@ -23,6 +23,7 @@ jobs:
                     python -m venv venv --upgrade-deps || python -m venv venv
                     source venv/bin/activate
                     pip install ruff
+                    ruff --version
 
             -   name: Ruff check and format
                 run: |
