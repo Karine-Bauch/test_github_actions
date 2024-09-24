@@ -35,7 +35,6 @@ jobs:
 
             -   name: Destructive Ruff check and format
                 run: |
-                    set-x
                     source venv/bin/activate
                     ruff --version
                     cd tests/ruff_destructive_project
