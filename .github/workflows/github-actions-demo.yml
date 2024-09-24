@@ -17,15 +17,15 @@ jobs:
                     echo "Listing tests directory:"
                     ls -la tests
 
-#            -   name: Set up python virtual environment
-#                run: |
-#                    python --version
-#                    python -m venv venv --upgrade-deps || python -m venv venv
-#                    source venv/bin/activate
-#                    pip install ruff
-#
-#            -   name: Ruff check and format
-#                run: |
-#                    cd ../${{ github.workspace }}/tests/ruff_project/src/ruff_project
-#                    ruff check
-#                    ruff format
+            -   name: Set up python virtual environment
+                run: |
+                    python --version
+                    python -m venv venv --upgrade-deps || python -m venv venv
+                    source venv/bin/activate
+                    pip install ruff
+
+            -   name: Ruff check and format
+                run: |
+                    cd tests/ruff_project
+                    ruff check
+                    ruff format
