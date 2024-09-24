@@ -35,6 +35,7 @@ jobs:
 
             -   name: Destructive Ruff check and format
                 run: |
+                    set-x
                     source venv/bin/activate
                     ruff --version
                     cd tests/ruff_destructive_project
@@ -42,6 +43,7 @@ jobs:
                     EXIT_CODE=0
                     
                     ruff check > /dev/null 2>&1 || EXIT_CODE=$?
+                    echo "EXIT_CODE after ruff check: $EXIT_CODE"
                     if [ "$EXIT_CODE" -eq 1 ]; then
                         echo "Ruff found issues as it should"
                     else
@@ -50,6 +52,7 @@ jobs:
                     fi
                     
                     ruff format > /dev/null 2>&1 || EXIT_CODE=$?
+                    echo "EXIT_CODE after ruff format: $EXIT_CODE"
                     if [ "$EXIT_CODE" -eq 1 ]; then
                         echo "Ruff found issues as it should"
                     else
