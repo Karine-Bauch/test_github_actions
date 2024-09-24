@@ -41,7 +41,7 @@ jobs:
                     
                     EXIT_CODE=0
                     
-                    ruff check > /dev/null 2>&1 || EXIT_CODE=$?;
+                    ruff check > /dev/null 2>&1 || EXIT_CODE=$?
                     if [ "$EXIT_CODE" -eq 1 ]; then
                         echo "Ruff found issues as it should"
                     else
@@ -49,7 +49,7 @@ jobs:
                         exit 1
                     fi
                     
-                    ruff format > /dev/null 2>&1 || EXIT_CODE=$?;
+                    ruff format > /dev/null 2>&1 || EXIT_CODE=$?
                     if [ "$EXIT_CODE" -eq 1 ]; then
                         echo "Ruff found issues as it should"
                     else
