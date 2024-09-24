@@ -23,10 +23,9 @@ jobs:
                     python -m venv venv --upgrade-deps || python -m venv venv
                     source venv/bin/activate
                     pip install ruff
-                    ruff --version
 
             -   name: Ruff check and format
                 run: |
-                    cd tests/ruff_project
-                    ruff check
+                    ruff --version
+                    ruff check tests/ruff_project
                     ruff format
