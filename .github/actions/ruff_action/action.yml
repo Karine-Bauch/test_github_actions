@@ -23,8 +23,6 @@ runs:
     using: docker
     image: swepy/ruff:$RUFF_VERSION
     steps:
-        -   name: check out code
-            uses: actions/checkout@v4
         -   name: Ruff check and format
             run: |
                 cd $PROJECT_PATH
