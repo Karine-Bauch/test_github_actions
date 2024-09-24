@@ -30,6 +30,7 @@ jobs:
                     source venv/bin/activate
                     ruff --version
                     cd tests/ruff_project
+                    ls -la
                     ruff check
                     ruff format
 
