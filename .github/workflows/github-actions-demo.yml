@@ -40,7 +40,8 @@ jobs:
                     cd tests/ruff_destructive_project
                     ls -la
                     
-                    ruff check > /dev/null 2>&1 || EXIT_CODE=$?
+                    ruff check > /dev/null 2>&1
+                    EXIT_CODE=$?
                     echo "EXIT_CODE after ruff check: $EXIT_CODE"
                     if [ "$EXIT_CODE" -eq 1 ]; then
                         echo "Ruff found issues as it should"
@@ -49,7 +50,8 @@ jobs:
                         exit 1
                     fi
                     
-                    ruff format > /dev/null 2>&1 || EXIT_CODE=$?
+                    ruff format > /dev/null 2>&1
+                    EXIT_CODE=$?
                     echo "EXIT_CODE after ruff format: $EXIT_CODE"
                     if [ "$EXIT_CODE" -eq 1 ]; then
                         echo "Ruff found issues as it should"
