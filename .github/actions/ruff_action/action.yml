@@ -11,17 +11,14 @@ inputs:
         default: "latest"
         required: false
         type: string
-
-env:
-    PROJECT_PATH: ${{ inputs.project_path }}
-    RUFF_VERSION: ${{ inputs.ruff_version }}
-    RUFF_CHECK_OPTIONS: ""
-    RUFF_FORMAT_OPTIONS: "--check"
-
-
 runs:
     using: docker
     image: swepy/ruff:$RUFF_VERSION
+    env:
+        PROJECT_PATH: ${{ inputs.project_path }}
+        RUFF_VERSION: ${{ inputs.ruff_version }}
+        RUFF_CHECK_OPTIONS: ""
+        RUFF_FORMAT_OPTIONS: "--check"
     steps:
         -   name: Ruff check and format
             run: |
