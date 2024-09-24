@@ -12,7 +12,7 @@ inputs:
         required: false
         type: string
 runs:
-    using: docker
+    using: composite
     image: swepy/ruff:$RUFF_VERSION
     env:
         PROJECT_PATH: ${{ inputs.project_path }}
