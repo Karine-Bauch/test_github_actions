@@ -1,6 +1,6 @@
 [tool.ruff]
 # Activer certains linter courants
-select = [
+lint.select = [
     "E",  # Erreurs de pycodestyle
     "W",  # Avertissements de pycodestyle
     "F",  # Erreurs de flake8

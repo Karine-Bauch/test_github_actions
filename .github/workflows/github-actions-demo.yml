@@ -45,6 +45,7 @@ jobs:
                     echo "EXIT_CODE after ruff check: $EXIT_CODE"
                     if [ "$EXIT_CODE" -eq 1 ]; then
                         echo "Ruff found issues as it should"
+                        exit 0
                     else
                         echo "Ruff check did not find issues as it should"
                     fi
