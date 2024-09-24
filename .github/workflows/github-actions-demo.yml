@@ -19,6 +19,7 @@ jobs:
 
             -   name: Ruff check and format
                 run: |
+                    echo "the project path is ${{ github.workspace }}"
                     cd tests/ruff_project/src/ruff_project
                     ruff check
                     ruff format
