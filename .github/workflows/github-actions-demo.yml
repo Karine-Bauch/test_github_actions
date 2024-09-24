@@ -29,5 +29,26 @@ jobs:
                 run: |
                     source venv/bin/activate
                     ruff --version
-                    ruff check tests/ruff_project
+                    cd tests/ruff_project
+                    ruff check
                     ruff format
+
+            -   name: Destructive Ruff check and format
+                run: |
+                    source venv/bin/activate
+                    ruff --version
+                    cd tests/ruff_project
+                    ruff check > /dev/null 2>&1 || EXIT_CODE=$?;
+                    if [ $EXIT_CODE -eq 1 ]; then
+                        echo "Ruff found issues as it should"
+                    else
+                        echo "Ruff did not find issues as it should"
+                        exit 1
+                    fi
+                    ruff format > /dev/null 2>&1 || EXIT_CODE=$?;
+                    if [ $EXIT_CODE -eq 1 ]; then
+                        echo "Ruff found issues as it should"
+                    else
+                        echo "Ruff did not find issues as it should"
+                        exit 1
+                    fi
