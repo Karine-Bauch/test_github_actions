@@ -38,9 +38,7 @@ jobs:
                     source venv/bin/activate
                     ruff --version
                     cd tests/ruff_destructive_project
-                    ls _la
-                    
-                    EXIT_CODE=0
+                    ls -la
                     
                     ruff check > /dev/null 2>&1 || EXIT_CODE=$?
                     echo "EXIT_CODE after ruff check: $EXIT_CODE"
