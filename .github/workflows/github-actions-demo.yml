@@ -46,7 +46,7 @@ jobs:
                     if [ "$EXIT_CODE" -eq 1 ]; then
                         echo "Ruff found issues as it should"
                     else
-                        echo "Ruff format did not find issues as it should"
+                        echo "Ruff check did not find issues as it should"
                     fi
                     
                     ruff format --check > /dev/null 2>&1 || EXIT_CODE=$?
