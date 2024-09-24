@@ -1,0 +1,32 @@
+name: Ruff Action
+description: Run ruff on your repository
+inputs:
+    project_path:
+        description: "The path to the project root directory"
+        default: "."
+        required: false
+        type: string
+    ruff_version:
+        description: "The version of ruff to be use."
+        default: "latest"
+        required: false
+        type: string
+
+env:
+    PROJECT_PATH: ${{ inputs.project_path }}
+    RUFF_VERSION: ${{ inputs.ruff_version }}
+    RUFF_CHECK_OPTIONS: ""
+    RUFF_FORMAT_OPTIONS: "--check"
+
+
+runs:
+    using: docker
+    image: swepy/ruff:$RUFF_VERSION
+    steps:
+        -   name: check out code
+            uses: actions/checkout@v4
+        -   name: Ruff check and format
+            run: |
+                cd $PROJECT_PATH
+                ruff check $RUFF_CHECK_OPTIONS
+                ruff format $RUFF_FORMAT_OPTIONS
