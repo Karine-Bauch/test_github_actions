@@ -36,7 +36,7 @@ on:
         type: string
 
 jobs:
-  lint:
+  ruff:
     runs-on: ubuntu-latest
     container:
       image: kbauchswe/ruff:latest

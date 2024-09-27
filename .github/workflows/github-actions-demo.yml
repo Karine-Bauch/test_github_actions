@@ -18,7 +18,7 @@
 on: [push]
 
 jobs:
-  call-lint:
+  ruff:
     uses: Karine-Bauch/test_github_actions/.github/workflows/ruff_action.yml@trunk
     with:
       project_path: 'tests/ruff_project'
