@@ -1,15 +1,24 @@
-name: GitHub Action Test
-run-name: Test
-on: [push]
-jobs:
-    run-ruff:
-        runs-on: ubuntu-latest
-        steps:
-            -   name: check out code
-                uses: actions/checkout@v4
+#on: [push]
+#
+#jobs:
+#    run-ruff:
+#        runs-on: ubuntu-latest
+#        steps:
+#            -   name: check out code
+#                uses: actions/checkout@v4
+#
+#            -   name: Run ruff action
+#                uses: ./action/ruff_action
+#                with:
+#                    project_path: "tests/ruff_project"
+#                    ruff_version: 'latest'
 
-            -   name: Run ruff action
-                uses: ./action/ruff_action
-                with:
-                    project_path: "tests/ruff_project"
-                    ruff_version: 'latest'
+---
+
+on: [push]
+
+jobs:
+  call-lint:
+    uses: Karine-Bauch/test_github_actions/action/ruff_action/ruff_action.yml@trunk
+    with:
+      project_path: 'tests/ruff_project'

@@ -1,0 +1,54 @@
+#name: Ruff Action
+#description: Run ruff on your repository
+#inputs:
+#    project_path:
+#        description: "The path to the project root directory"
+#        default: "."
+#        required: false
+#    ruff_version:
+#        description: "The version of ruff to be use."
+#        default: "latest"
+#        required: false
+#runs:
+#    using: docker
+#    image: swepy/ruff:$RUFF_VERSION
+#    env:
+#        PROJECT_PATH: ${{ inputs.project_path }}
+#        RUFF_VERSION: ${{ inputs.ruff_version }}
+#        RUFF_CHECK_OPTIONS: ""
+#        RUFF_FORMAT_OPTIONS: "--check"
+#    args:
+#        -   name: Ruff check and format
+#            run: |
+#                cd $PROJECT_PATH
+#                ruff check $RUFF_CHECK_OPTIONS
+#                ruff format $RUFF_FORMAT_OPTIONS
+
+---
+
+on:
+  workflow_call:
+    inputs:
+      project_path:
+        description: 'Project to lint'
+        required: false
+        default: '.'
+        type: string
+    secrets:
+      GITHUB_TOKEN:
+        required: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    container:
+      image: kbauchswe/ruff:latest
+      options: --user root
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Ruff Linter
+        run: |
+          ruff check .
