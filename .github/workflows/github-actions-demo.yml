@@ -19,6 +19,6 @@ on: [push]
 
 jobs:
   call-lint:
-    uses: Karine-Bauch/test_github_actions/action/ruff_action/ruff_action.yml@trunk
+    uses: Karine-Bauch/test_github_actions/.github/workflows/ruff_action.yml@trunk
     with:
       project_path: 'tests/ruff_project'
