@@ -49,5 +49,3 @@ jobs:
                         echo "Ruff did not find issues as it should"
                         exit 1
                     fi
-                with:
-                    project_path: 'tests/ruff_destructive_project'
