@@ -18,7 +18,26 @@
 on: [push]
 
 jobs:
-  ruff:
-    uses: Karine-Bauch/test_github_actions/.github/workflows/ruff_action.yml@trunk
-    with:
-      project_path: 'tests/ruff_project'
+    ruff:
+        uses: Karine-Bauch/test_github_actions/.github/workflows/ruff_action.yml@trunk
+        with:
+            project_path: 'tests/ruff_project'
+
+    destructive_ruff:
+        run: |
+            ruff check > /dev/null 2>&1 || EXIT_CODE=$?;
+            if [ $EXIT_CODE -eq 1 ]; then
+                echo "Ruff found issues as it should"
+            else
+                echo "Ruff did not find issues as it should"
+                exit 1
+            fi
+            ruff format > /dev/null 2>&1 || EXIT_CODE=$?;
+            if [ $EXIT_CODE -eq 1 ]; then
+                echo "Ruff found issues as it should"
+            else
+                echo "Ruff did not find issues as it should"
+                exit 1
+            fi
+        with:
+            project_path: 'tests/ruff_destructive_project'

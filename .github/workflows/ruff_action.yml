@@ -27,25 +27,25 @@
 ---
 
 on:
-  workflow_call:
-    inputs:
-      project_path:
-        description: 'Project to lint'
-        required: false
-        default: '.'
-        type: string
+    workflow_call:
+        inputs:
+            project_path:
+                description: 'Project to lint'
+                required: false
+                default: '.'
+                type: string
 
 jobs:
-  ruff:
-    runs-on: ubuntu-latest
-    container:
-      image: kbauchswe/ruff:latest
-      options: --user root
+    ruff:
+        runs-on: ubuntu-latest
+        container:
+            image: kbauchswe/ruff:latest
+            options: --user root
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
 
-      - name: Run Ruff Linter
-        run: |
-          ruff check ${{ inputs.project_path }}
+            - name: Run Ruff Linter
+              run: |
+                  ruff check ${{ inputs.project_path }}
