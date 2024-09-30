@@ -24,15 +24,15 @@ jobs:
                 run: |
                     ruff check $PROJECT_PATH > /dev/null 2>&1 || EXIT_CODE=$?;
                     if [ $EXIT_CODE -eq 1 ]; then
-                        echo "Ruff found issues as it should"
+                        echo "Ruff check found issues as it should"
                     else
-                        echo "Ruff did not find issues as it should"
+                        echo "Ruff check did not find issues as it should"
                         exit 1
                     fi
                     ruff format --check $PROJECT_PATH > /dev/null 2>&1 || EXIT_CODE=$?;
                     if [ $EXIT_CODE -eq 1 ]; then
-                        echo "Ruff found issues as it should"
+                        echo "Ruff format found issues as it should"
                     else
-                        echo "Ruff did not find issues as it should"
+                        echo "Ruff format did not find issues as it should"
                         exit 1
                     fi
