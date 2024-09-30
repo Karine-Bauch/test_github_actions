@@ -10,9 +10,6 @@ jobs:
 
     destructive_ruff:
         runs-on: ubuntu-latest
-        env:
-            PROJECT_PATH: ${{ inputs.project_path }}
-            RUFF_VERSION: ${{ inputs.ruff_version }}
         container:
             image: kbauchswe/ruff:${{ inputs.ruff_version }}
             options: --user root
