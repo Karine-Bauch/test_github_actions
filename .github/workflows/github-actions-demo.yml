@@ -31,8 +31,8 @@ jobs:
                     fi
                     echo "after check, exit code: $EXIT_CODE"
                     echo "project_path: $PROJECT_PATH"
-                    ruff format --check $PROJECT_PATH > /dev/null 2>&1 || EXIT_CODE=$?;
-                    echo "after format, exit code: $EXIT_CODE"
+                    ruff format --check $PROJECT_PATH || EXIT_CODE=$?;
+                    echo "after format check, exit code: $EXIT_CODE"
                     if [ $EXIT_CODE -ne 0 ]; then
                         echo "Ruff format found issues as it should"
                     else
