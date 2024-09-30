@@ -9,8 +9,11 @@ jobs:
 
     destructive_ruff:
         runs-on: ubuntu-latest
+        env:
+            PROJECT_PATH: ${{ inputs.project_path }}
+            RUFF_VERSION: ${{ inputs.ruff_version }}
         container:
-            image: kbauchswe/ruff:latest
+            image: kbauchswe/ruff:$RUFF_VERSION
             options: --user root
 
         steps:
@@ -19,14 +22,14 @@ jobs:
 
             -   name: Run Ruff Linter
                 run: |
-                    ruff check ${{ inputs.project_path }} > /dev/null 2>&1 || EXIT_CODE=$?;
+                    ruff check $PROJECT_PATH > /dev/null 2>&1 || EXIT_CODE=$?;
                     if [ $EXIT_CODE -eq 1 ]; then
                         echo "Ruff found issues as it should"
                     else
                         echo "Ruff did not find issues as it should"
                         exit 1
                     fi
-                    ruff format --check ${{ inputs.project_path }} > /dev/null 2>&1 || EXIT_CODE=$?;
+                    ruff format --check $PROJECT_PATH > /dev/null 2>&1 || EXIT_CODE=$?;
                     if [ $EXIT_CODE -eq 1 ]; then
                         echo "Ruff found issues as it should"
                     else
