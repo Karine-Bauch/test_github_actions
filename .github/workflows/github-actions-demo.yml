@@ -12,6 +12,7 @@ jobs:
         runs-on: ubuntu-latest
         env:
             PROJECT_PATH: 'tests/destructive_ruff_project'
+            RUFF_VERSION: 'latest'
         container:
             image: kbauchswe/ruff:$RUFF_VERSION
             options: --user root
