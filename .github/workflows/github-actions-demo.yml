@@ -14,7 +14,7 @@ jobs:
             PROJECT_PATH: ${{ inputs.project_path }}
             RUFF_VERSION: ${{ inputs.ruff_version }}
         container:
-            image: kbauchswe/ruff:$RUFF_VERSION
+            image: kbauchswe/ruff:${{ inputs.ruff_version }}
             options: --user root
 
         steps:
