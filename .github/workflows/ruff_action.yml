@@ -17,7 +17,6 @@ jobs:
         runs-on: ubuntu-latest
         env:
             PROJECT_PATH: ${{ inputs.project_path }}
-            RUFF_VERSION: ${{ inputs.ruff_version }}
             RUFF_CHECK_OPTIONS: ''
             RUFF_FORMAT_OPTIONS: '--check'
         container:
