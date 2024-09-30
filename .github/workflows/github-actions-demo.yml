@@ -29,7 +29,9 @@ jobs:
                         echo "Ruff check did not find issues as it should"
                         exit 1
                     fi
+                    echo "after check, exit code: $EXIT_CODE"
                     ruff format $PROJECT_PATH > /dev/null 2>&1 || EXIT_CODE=$?;
+                    echo "after format, exit code: $EXIT_CODE"
                     if [ $EXIT_CODE -eq 1 ]; then
                         echo "Ruff format found issues as it should"
                     else
