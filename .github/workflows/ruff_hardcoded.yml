@@ -1,0 +1,58 @@
+name: GitHub Action Test
+run-name: Test
+on: [push]
+jobs:
+    Test:
+        runs-on: ubuntu-latest
+        container:
+            image: python:3.12.6-alpine3.20
+        steps:
+            -   name: Check out code
+                uses: actions/checkout@v4
+
+            -   name: Check tests files
+                run: |
+                    echo "Current directory: ${{ github.workspace }}"
+                    ls -la
+                    echo "Listing tests directory:"
+                    ls -la tests
+
+            -   name: Set up python virtual environment
+                run: |
+                    python --version
+                    python -m venv venv --upgrade-deps || python -m venv venv
+                    source venv/bin/activate
+                    pip install ruff
+                    ruff --version
+
+            -   name: Ruff check and format
+                run: |
+                    source venv/bin/activate
+                    ruff --version
+                    cd tests/ruff_project
+                    ls -la
+                    ruff check
+                    ruff format
+
+            -   name: Destructive Ruff check and format
+                run: |
+                    source venv/bin/activate
+                    ruff --version
+                    cd tests/ruff_destructive_project
+                    ls -la
+                    
+                    ruff check > /dev/null 2>&1 || EXIT_CODE=$?
+                    echo "EXIT_CODE after ruff check: $EXIT_CODE"
+                    if [ "$EXIT_CODE" -eq 1 ]; then
+                        echo "Ruff found issues as it should"
+                    else
+                        echo "Ruff check did not find issues as it should"
+                    fi
+                    
+                    ruff format --check > /dev/null 2>&1 || EXIT_CODE=$?
+                    echo "EXIT_CODE after ruff format: $EXIT_CODE"
+                    if [ "$EXIT_CODE" -eq 1 ]; then
+                        echo "Ruff found issues as it should"
+                    else
+                        echo "Ruff format did not find issues as it should"
+                    fi
