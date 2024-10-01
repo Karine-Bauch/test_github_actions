@@ -2,10 +2,11 @@ name: GitHub Action Test
 run-name: Test
 on: [push]
 jobs:
-    Test:
+    ruff:
         runs-on: ubuntu-latest
         container:
-            image: python:3.12.6-alpine3.20
+            image: kbauchswe/ruff:latest
+            options: --user root
         steps:
             -   name: Check out code
                 uses: actions/checkout@v4
